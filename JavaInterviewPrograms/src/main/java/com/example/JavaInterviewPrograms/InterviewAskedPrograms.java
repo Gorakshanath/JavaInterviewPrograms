@@ -3,6 +3,7 @@ package com.example.JavaInterviewPrograms;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class InterviewAskedPrograms {
     public static void main(String[] args){
@@ -15,8 +16,16 @@ public class InterviewAskedPrograms {
         //Object camelCaseStringWithJoinBy;
         //camelCaseStringWithJoinByHash("hello good morning");
         //getMostFrequentWord();
-        mostDuplicateWordAndFindIsLongestOrNot();
+        //mostDuplicateWordAndFindIsLongestOrNot();
+        arrangeEvenNoToLeftAndOddToRightSide();
     }
+    public static void arrangeEvenNoToLeftAndOddToRightSide(){
+        Integer[] no={5,2,10,3,9,20,23,8};
+        List<Integer> list= Arrays.asList(no);
+        System.out.println(Stream.concat(list.stream().filter(n->n%2==0),
+        list.stream().filter(n1->n1%2!=0)).collect(Collectors.toList()));
+    }
+
     public static void mostDuplicateWordAndFindIsLongestOrNot(){
         //write java8 program to find most duplicate word and either that duplicate
     // word is longest or not among list
