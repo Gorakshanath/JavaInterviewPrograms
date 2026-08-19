@@ -1,5 +1,7 @@
 package com.example.JavaInterviewPrograms;
 
+import com.example.JavaInterviewPrograms.model.Employee;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -11,13 +13,26 @@ public class InterviewAskedPrograms {
         // character — return the first character
         // that appears only once. "swiss" → 'w'
        // firstNonRepeatingCharacterFromWord("hdfhfxaswiss");
-       // firstDuplicateCharacterFromWord("swiss");
+       // firstDuplicateCharacterFromWord();
         //treeMapDemo();
         //Object camelCaseStringWithJoinBy;
         //camelCaseStringWithJoinByHash("hello good morning");
         //getMostFrequentWord();
         //mostDuplicateWordAndFindIsLongestOrNot();
-        arrangeEvenNoToLeftAndOddToRightSide();
+        //arrangeEvenNoToLeftAndOddToRightSide();
+
+        //Find Departmentwise highestSalary
+        highestSalaryByDepartment();
+    }
+    public static void highestSalaryByDepartment(){
+        List<Employee> employeeList = List.of(new Employee(1, "Sachin", 50000d, "Er", "Pune"),
+                new Employee(2, "Shyam", 20000d, "Er", "Pune"),
+                new Employee(3, "Ram", 10000d, "Er", "Pune"),
+                new Employee(4, "Govind", 40000d, "QA", "Pune"),
+                new Employee(5, "Vishal", 30000d, "QA", "Pune"),
+                new Employee(6, "Tushar", 70000d, "Er", "Pune"),
+                new Employee(7, "Vivekanand", 50000d, "Er", "Pune"));
+        System.out.println(employeeList.stream().collect(Collectors.groupingBy(e->e.getDepartment(),Collectors.maxBy(Comparator.comparing(Employee::getSalary)))));
     }
     public static void arrangeEvenNoToLeftAndOddToRightSide(){
         Integer[] no={5,2,10,3,9,20,23,8};
@@ -97,12 +112,13 @@ public class InterviewAskedPrograms {
         Optional<String> duplicateCharacter=Arrays.asList(array).stream()
                 .collect(Collectors.groupingBy(c->c, LinkedHashMap::new,Collectors.counting()))
                 .entrySet().stream().filter(entry->entry.getValue()==1).
-                map(Map.Entry::getKey).findFirst();
+                map(e->e.getKey()).findFirst();
         if(duplicateCharacter.isPresent()) {
             System.out.println(duplicateCharacter.get());
         }
     }
-    private static void firstDuplicateCharacterFromWord(String word){
+    private static void firstDuplicateCharacterFromWord(){
+        String word="swiss";
         String[] array=word.split("");
         Set<String> set=new HashSet<>();
 //        for(String c:array){
@@ -112,11 +128,12 @@ public class InterviewAskedPrograms {
 //            }
 //        }
         // Java8
-        Arrays.asList(array).stream().filter(c->!set.add(c)).forEach((System.out::println));
+        //System.out.println(Stream.of(array).filter(c->!set.add(c)).collect(Collectors.toList()));
+        System.out.println(Arrays.asList(array).stream().filter(c->!set.add(c)).findFirst());
 
 
-        String s="HelLO World";
-        System.out.println(Arrays.asList(s.split("")).stream().collect(Collectors.groupingBy((s1->s1),Collectors.counting())));
+        //String s="HelLO World";
+        //System.out.println(Arrays.asList(s.split("")).stream().collect(Collectors.groupingBy((s1->s1),Collectors.counting())));
     }
     // Online Java Compiler
 // Use this editor to write, compile and run your Java code online
