@@ -137,11 +137,43 @@ public class InterviewAskedPrograms {
     }
     // Online Java Compiler
 // Use this editor to write, compile and run your Java code online
+    public void moveZeros(){
+        Integer[] array= {7,0,1,0,5};
+        //  output: [7,1,5,0,0]
+        // Move all zero to the end and you need to use same array.
+        int size=array.length;
+        int nz=0;
+        int z=0;
+        //  int temp=0;
+        while(nz<size){
+            if(array[nz]!=0){
+                int temp=array[nz];
+                array[nz]=array[z];
+                array[z]=temp;
+                nz++;
+                z++;
+            }
+            else{
+                nz++;
+            }
+        }
+        System.out.println(Arrays.toString(array));
+    }
+    private static void stringProgram() {
+        String str="aabbab";
+        StringBuilder result=new StringBuilder();
+        int count=1;
+        for(int i=1;i<=str.length();i++) {
 
-
-
-
-
+            if (i<str.length()&& str.charAt(i)==str.charAt(i-1)) {
+                ++count;
+            } else {
+                result.append(str.charAt(i-1)).append(count);
+                count = 1;
+            }
+        }
+        System.out.println(result);
+    }
 }
 class ComparatorTest implements Comparator{
     public int compare(Object ob1,Object ob2){
