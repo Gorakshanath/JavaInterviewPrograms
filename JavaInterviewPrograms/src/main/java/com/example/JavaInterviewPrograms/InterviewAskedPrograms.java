@@ -5,6 +5,7 @@ import com.example.JavaInterviewPrograms.model.Employee;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class InterviewAskedPrograms {
@@ -173,6 +174,11 @@ public class InterviewAskedPrograms {
             }
         }
         System.out.println(result);
+    }
+    public void reverseStringUsingStream(){
+        String s1 = "I am a java developer";
+        System.out.println(IntStream.range(0,s1.length()).mapToObj(
+                i->s1.charAt(s1.length()-1-i)).map(String::valueOf).collect(Collectors.joining()));
     }
 }
 class ComparatorTest implements Comparator{
